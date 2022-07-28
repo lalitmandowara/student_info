@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="School_ManagenentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="student" Relationship="School_ManagenentModel.FK__student__ClassId__5CD6CB2B" FromRole="Class" ToRole="student" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="School_Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Class" EntityType="Self.Class" />
+    <EntitySet Name="student" EntityType="School_ManagenentModel.student" />
+    <EntitySet Name="Subjects" EntityType="School_ManagenentModel.Subjects" />
+    <EntitySet Name="Teacher" EntityType="School_ManagenentModel.Teacher" />
+    <AssociationSet Name="FK__student__ClassId__5CD6CB2B" Association="School_ManagenentModel.FK__student__ClassId__5CD6CB2B">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="student" EntitySet="student" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Teacher__Subject__619B8048" Association="School_ManagenentModel.FK__Teacher__Subject__619B8048">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="School_ManagenentModel.Users" />
+    <EntitySet Name="fees" EntityType="School_ManagenentModel.fees" />
+    <EntitySet Name="Periods" EntityType="School_ManagenentModel.Periods" />
+    <AssociationSet Name="FK__fees__StudentId__68487DD7" Association="School_ManagenentModel.FK__fees__StudentId__68487DD7">
+      <End Role="student" EntitySet="student" />
+      <End Role="fees" EntitySet="fees" />
+    </AssociationSet>
+    <EntitySet Name="Attendance" EntityType="School_ManagenentModel.Attendance" />
+    <AssociationSet Name="FK__Attendanc__Stude__6D0D32F4" Association="School_ManagenentModel.FK__Attendanc__Stude__6D0D32F4">
+      <End Role="student" EntitySet="student" />
+      <End Role="Attendance" EntitySet="Attendance" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RollNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ClassId" Type="Int32" />
+    <NavigationProperty Name="Class" Relationship="School_ManagenentModel.FK__student__ClassId__5CD6CB2B" FromRole="student" ToRole="Class" />
+    <NavigationProperty Name="fees" Relationship="School_ManagenentModel.FK__fees__StudentId__68487DD7" FromRole="student" ToRole="fees" />
+    <NavigationProperty Name="Attendance" Relationship="School_ManagenentModel.FK__Attendanc__Stude__6D0D32F4" FromRole="student" ToRole="Attendance" />
+  </EntityType>
+  <EntityType Name="Subjects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubjectsName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Teacher" Relationship="School_ManagenentModel.FK__Teacher__Subject__619B8048" FromRole="Subjects" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeacherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SubjectId" Type="Int32" />
+    <NavigationProperty Name="Subjects" Relationship="School_ManagenentModel.FK__Teacher__Subject__619B8048" FromRole="Teacher" ToRole="Subjects" />
+  </EntityType>
+  <Association Name="FK__student__ClassId__5CD6CB2B">
+    <End Type="School_ManagenentModel.Class" Role="Class" Multiplicity="0..1" />
+    <End Type="School_ManagenentModel.student" Role="student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="student">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Teacher__Subject__619B8048">
+    <End Type="School_ManagenentModel.Subjects" Role="Subjects" Multiplicity="0..1" />
+    <End Type="School_ManagenentModel.Teacher" Role="Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Profile_Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="fees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FeesDate" Type="DateTime" Precision="3" />
+    <Property Name="StudentId" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="student" Relationship="School_ManagenentModel.FK__fees__StudentId__68487DD7" FromRole="fees" ToRole="student" />
+  </EntityType>
+  <EntityType Name="Periods">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartTime" Type="Time" Precision="0" />
+    <Property Name="EndTime" Type="Time" Precision="0" />
+  </EntityType>
+  <Association Name="FK__fees__StudentId__68487DD7">
+    <End Type="School_ManagenentModel.student" Role="student" Multiplicity="0..1" />
+    <End Type="School_ManagenentModel.fees" Role="fees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="fees">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Attendance">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="Int32" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="student" Relationship="School_ManagenentModel.FK__Attendanc__Stude__6D0D32F4" FromRole="Attendance" ToRole="student" />
+  </EntityType>
+  <Association Name="FK__Attendanc__Stude__6D0D32F4">
+    <End Type="School_ManagenentModel.student" Role="student" Multiplicity="0..1" />
+    <End Type="School_ManagenentModel.Attendance" Role="Attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Attendance">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

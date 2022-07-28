@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6fbf0bd71a674931aa9a2e65f3148b55" Name="Diagram1">
+        <EntityTypeShape EntityType="School_ManagenentModel.Class" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="School_ManagenentModel.student" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="School_ManagenentModel.Subjects" Width="1.5" PointX="3.375" PointY="1" />
+        <EntityTypeShape EntityType="School_ManagenentModel.Teacher" Width="1.5" PointX="5.625" PointY="0.875" />
+        <AssociationConnector Association="School_ManagenentModel.FK__student__ClassId__5CD6CB2B" />
+        <AssociationConnector Association="School_ManagenentModel.FK__Teacher__Subject__619B8048" />
+        <EntityTypeShape EntityType="School_ManagenentModel.Users" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="School_ManagenentModel.fees" Width="1.5" PointX="5.25" PointY="7.125" />
+        <EntityTypeShape EntityType="School_ManagenentModel.Periods" Width="1.5" PointX="7.375" PointY="3.75" />
+        <AssociationConnector Association="School_ManagenentModel.FK__fees__StudentId__68487DD7" />
+        <EntityTypeShape EntityType="School_ManagenentModel.Attendance" Width="1.5" PointX="5.25" PointY="10.5" />
+        <AssociationConnector Association="School_ManagenentModel.FK__Attendanc__Stude__6D0D32F4" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

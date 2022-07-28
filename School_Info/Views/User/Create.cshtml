@@ -1,0 +1,86 @@
+﻿@model School_Info.Users
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm("Create", "User", FormMethod.Post, new
+{
+    enctype = "multipart/form-data"
+}))
+
+
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <!-- Basic Layout -->
+        <div class="col-xxl">
+            <div class="card mb-4">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="mb-0">Basic Layout</h5>
+                    <small class="text-muted float-end">Default label</small>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Name</label>
+                            <div class="col-sm-10">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @required = "" } })
+
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Name</label>
+                            <div class="col-sm-10">
+                                @*@Html.EditorFor(model => model.Profile_Image, new { htmlAttributes = new { @class = "form-control", @required = "" } })*@
+                                <input type="@Model.Profile_Image" name="Image" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Email</label>
+                            <div class="col-sm-10">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @required = "" } })
+
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Password</label>
+                            <div class="col-sm-10">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @required = "" } })
+
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">MobileNo</label>
+                            <div class="col-sm-10">
+                                @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control", @required = "" } })
+
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Address</label>
+                            <div class="col-sm-10">
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @required = "" } })
+
+                            </div>
+                        </div>
+                        <div class="row justify-content-end">
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
